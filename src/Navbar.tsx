@@ -43,13 +43,6 @@ const Navbar = () => {
                 </div>
                 <div className={`overlay ${isMenuActive ? 'is-active' : ''}`} onClick={closeMenu}></div>
                 <div className={`menu ${isMenuActive ? 'is-active' : ''}`} id="menu">
-                    <ul className="menu-inner">
-                        <li className="menu-item"><a className="menu-link" href="#" onClick={closeMenu}>Home</a></li>
-                        <li className="menu-item"><a className="menu-link" href="#" onClick={closeMenu}>About</a></li>
-                        <li className="menu-item"><a className="menu-link" href="#" onClick={closeMenu}>Service</a></li>
-                        <li className="menu-item"><a className="menu-link" href="#" onClick={closeMenu}>Project</a></li>
-                        <li className="menu-item"><a className="menu-link" href="#" onClick={closeMenu}>Support</a></li>
-                    </ul>
                 </div>
                 <span><i className="bx bx-search search-toggle" onClick={toggleSearch}></i></span>
                 <div className={`search-block ${isSearchActive ? 'is-active' : ''}`}>
