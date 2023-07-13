@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap");
+
 
 :root {
     --color-black: hsl(0, 0%, 10%);
@@ -99,19 +99,20 @@ img {
         display: flex;
         align-items: center;
         color: #1d3563;
-        
+        user-select: none;
 
-        :visited{
+
+        :visited {
             color: #3f6bbd;
         }
 
-        
-        :hover{
+
+        :hover {
             color: #3f6bbd;
             transition: color 1s;
         }
 
-        :active{
+        :active {
             color: #1d3563;
         }
     }
@@ -119,6 +120,9 @@ img {
 
 .logo {
     height: 60px;
+    pointer-events: none;
+    /* Impedisce l'interazione con l'immagine */
+    -webkit-touch-callout: none;
 }
 
 // Header
@@ -184,11 +188,11 @@ img {
     }
 
     // Media Query Breakpoint
-   @media only screen and (min-width: 48rem) {
-  .menu {
-    display: none;
-  }
-}
+    @media only screen and (min-width: 48rem) {
+        .menu {
+            display: none;
+        }
+    }
 }
 
 // Burger
@@ -305,12 +309,27 @@ img {
     }
 }
 
+.brand-name {
+    font-size: 90%;
+}
+
+.sitelayout {
+    background: none;
+    margin: 100px 10px 10px 266px;
+    align-items: center;
+}
+
 @media only screen and (max-width: 48rem) {
     .Sidebar {
-      display: none;
+        display: none;
     }
 
-    .brand-name{
+    .brand-name {
         font-size: 80%;
     }
-  }
+
+    .sitelayout {
+        background: none;
+        margin: 100px 10px 10px 10px;
+    }
+}

@@ -1,13 +1,9 @@
 import { BookOutlined, EditOutlined, HomeOutlined, InfoCircleOutlined, SolutionOutlined, UserOutlined } from '@ant-design/icons';
 import { NavLink, BrowserRouter as Router } from 'react-router-dom';
-
-import { Layout, Menu } from 'antd';
-import { MenuProps } from 'antd';
+import { Menu } from 'antd';
 import './style.scss';
 
 const { SubMenu } = Menu;
-
-
 
 export type MenuItem = {
   key: string;
@@ -16,11 +12,6 @@ export type MenuItem = {
   link?: string;
   subMenuItems?: MenuItem[];
 };
-
-interface CustomMenuProps extends MenuProps {
-  onCollapse?: (collapsed: boolean) => void;
-  collapsed?: boolean;
-}
 
 export const menuItems: MenuItem[] = [
   {
@@ -316,37 +307,37 @@ export const menuItems: MenuItem[] = [
 
 
 const renderMenuItems = (menuItems: MenuItem[]): JSX.Element[] => {
-    return menuItems.map((item: MenuItem) => {
-      if (item.subMenuItems) {
-        return (
-          <SubMenu key={item.key} icon={item.icon} title={item.title}>
-            {renderMenuItems(item.subMenuItems)}
-          </SubMenu>
-        );
-      } else {
-        return (
-            <Menu.Item key={item.key} icon={item.icon}>
-              {item.link ? (
-                <NavLink to={item.link}>
-                  {item.title}
-                </NavLink>
-              ) : (
-                <span>{item.title}</span>
-              )}
-            </Menu.Item>
-          );
-      }
-    });
-  };
-  
-  const Sidebar = () => {
-    return (
-      <Router>
-        <Menu className="Sidebar" theme="light" mode="vertical" defaultSelectedKeys={['home']} style={{ width: 256, height: '100vh', position: 'fixed', left: 0, top: 80, bottom: 0 }}>
-          {renderMenuItems(menuItems)}
-        </Menu>
-      </Router>
-    );
-  };
-  
-  export default Sidebar;
+  return menuItems.map((item: MenuItem) => {
+    if (item.subMenuItems) {
+      return (
+        <SubMenu key={item.key} icon={item.icon} title={item.title}>
+          {renderMenuItems(item.subMenuItems)}
+        </SubMenu>
+      );
+    } else {
+      return (
+        <Menu.Item key={item.key} icon={item.icon}>
+          {item.link ? (
+            <NavLink to={item.link}>
+              {item.title}
+            </NavLink>
+          ) : (
+            <span>{item.title}</span>
+          )}
+        </Menu.Item>
+      );
+    }
+  });
+};
+
+const Sidebar = () => {
+  return (
+    <Router>
+      <Menu className="Sidebar" theme="light" mode="vertical" defaultSelectedKeys={['home']} style={{ width: 256, height: '100vh', position: 'fixed', left: 0, top: 80, bottom: 0 }}>
+        {renderMenuItems(menuItems)}
+      </Menu>
+    </Router>
+  );
+};
+
+export default Sidebar;

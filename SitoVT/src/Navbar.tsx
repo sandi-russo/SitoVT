@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { BookOutlined, EditOutlined, HomeOutlined, InfoCircleOutlined, SolutionOutlined, UserOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import './style.scss';
-import logo from './assets/logo-VT.png';
 import { MenuItem, menuItems } from './Sidebar';
 import { MenuOutlined } from '@ant-design/icons';
+import { Img } from 'react-image';
+import logo from './assets/logo-VT.png';
 
 const { SubMenu } = Menu;
 
@@ -45,15 +45,14 @@ const Navbar: React.FC<NavbarProps> = () => {
   return (
     <header className="header" id="header">
       <nav className="navbar container">
-        <div className="brand">
-          <a href="./index.html">
-            <img src={logo} alt="Logo" className="logo" />
+        <div className="brand" style={{ lineHeight: '1.1' }}>
+          <a href="./index.html" style={{ display: 'flex', alignItems: 'center' }}>
+            <Img src={logo} alt="Logo" className="logo" loader={<div className="logo-placeholder" style={{ width: '50px', height: '50px', marginRight: '10px' }} />} />
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span className="brand-name" style={{margin:"-2px"}}>I.I.S. SUPERIORE</span>
-              <span className="brand-name" style={{margin:"-2px", fontWeight: 'bolder' }}>
-                VERONA-TRENTO
-              </span>
-              <span className="brand-name" style={{margin:"-2px"}}>MESSINA</span>
+              <span className="brand-name" style={{ margin: 0, fontSize: '13px' }}>I.I.S. SUPERIORE</span>
+              <span className="brand-name" style={{ margin: 0, fontSize: '13px', fontWeight: 'bold' }}>VERONA TRENTO</span>
+              <span className="brand-name" style={{ margin: 0, fontSize: '13px', fontWeight: 'bold' }}>MAJORANA</span>
+              <span className="brand-name" style={{ margin: 0, fontSize: '13px' }}>MESSINA</span>
             </div>
           </a>
         </div>
@@ -62,7 +61,7 @@ const Navbar: React.FC<NavbarProps> = () => {
         </div>
         <div className={`overlay ${isMenuActive ? 'is-active' : ''}`} onClick={closeMenu}></div>
         <div className={`menu ${isMenuActive ? 'is-active' : ''}`} id="menu">
-          <Menu mode="inline" defaultSelectedKeys={['home']}>
+          <Menu theme="light" mode="inline" defaultSelectedKeys={['home']}>
             {menuItems.map((item) => renderMenuItem(item))}
           </Menu>
         </div>
