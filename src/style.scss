@@ -168,32 +168,11 @@ img {
     }
 
     // Media Query Breakpoint
-    @media only screen and (min-width: 48rem) {
-        position: relative;
-        top: 0;
-        left: 0;
-        width: auto;
-        height: auto;
-        margin-left: auto;
-        background: none;
-        box-shadow: none;
-
-        &-inner {
-            display: flex;
-            flex-direction: row;
-            column-gap: 1.75rem;
-            margin: 0 auto;
-            margin-right: 5rem;
-        }
-
-        &-link {
-            text-transform: capitalize;
-        }
-
-        &-block {
-            margin-left: 2rem;
-        }
-    }
+   @media only screen and (min-width: 48rem) {
+  .menu {
+    display: none;
+  }
+}
 }
 
 // Burger
@@ -225,6 +204,9 @@ img {
         visibility: hidden;
     }
 }
+
+
+
 
 // Overlay
 .overlay {
@@ -306,3 +288,10 @@ img {
         }
     }
 }
+
+
+@media only screen and (max-width: 48rem) {
+    .Sidebar {
+      display: none;
+    }
+  }

@@ -1,260 +1,282 @@
 import React from 'react';
 import { BookOutlined, EditOutlined, HomeOutlined, InfoCircleOutlined, SolutionOutlined, UserOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
+import { MenuProps } from 'antd';
 import { Layout, Menu } from 'antd';
 import Navbar from './Navbar';
+import './style.scss';
+
 const { SubMenu } = Menu;
 
 
 
-const onClick: MenuProps['onClick'] = (e) => {
-  console.log('click', e);
+export type MenuItem = {
+  key: string;
+  icon: JSX.Element;
+  title: string;
+  link?: string;
+  subMenuItems?: MenuItem[];
 };
 
+interface CustomMenuProps extends MenuProps {
+  onCollapse?: (collapsed: boolean) => void;
+  collapsed?: boolean;
+  }
 
-const App: React.FC = () => {
+  export const menuItems: MenuItem[] =[
+  {
+    key: 'home',
+    icon: <HomeOutlined />,
+    title: 'Home',
+  },
+  {
+    key: 'organigramma',
+    icon: <SolutionOutlined />,
+    title: 'Organigramma',
+    subMenuItems: [
+      {
+        key: 'sistema',
+        icon: <UserOutlined />,
+        title: 'Figure di Sistema',
+      },
+      {
+        key: 'pcto',
+        icon: <UserOutlined />,
+        title: 'PCTO',
+      },
+      {
+        key: 'tematiche',
+        icon: <UserOutlined />,
+        title: 'Figure Tematiche',
+      },
+      {
+        key: 'strumentali',
+        icon: <UserOutlined />,
+        title: 'Funzioni Strumentali',
+      },
+      {
+        key: 'presidenza',
+        icon: <UserOutlined />,
+        title: 'Ufficio Presidenza',
+      },
+      {
+        key: 'segreteria',
+        icon: <UserOutlined />,
+        title: 'Uffico Segreteria',
+      },
+    ],
+  },
+  {
+    key: 'circolari',
+    icon: <InfoCircleOutlined />,
+    title: 'Circolari',
+    subMenuItems: [
+      {
+        key: 'circolari-diurno',
+        icon: <UserOutlined />,
+        title: 'Circolari Diurno',
+      },
+      {
+        key: 'circolari-serale',
+        icon: <UserOutlined />,
+        title: 'Circolari Serale',
+      },
+      {
+        key: 'circolari-2020',
+        icon: <UserOutlined />,
+        title: 'Circolari 2020',
+      },
+      {
+        key: 'circolari-2021',
+        icon: <UserOutlined />,
+        title: 'Circolari 2021',
+      },
+    ],
+  },
+  {
+    key: 'offerta-formativa',
+    icon: <BookOutlined />,
+    title: 'Offerta Formativa',
+    subMenuItems: [
+      {
+        key: 'ecdl',
+        icon: <EditOutlined />,
+        title: 'ECDL',
+      },
+      {
+        key: 'cisco',
+        icon: <BookOutlined />,
+        title: 'Cisco',
+      },
+      {
+        key: 'erasmus',
+        icon: <UserOutlined />,
+        title: 'Erasmus',
+      },
+      {
+        key: 'zero-robotics',
+        icon: <UserOutlined />,
+        title: 'Zero Robotics',
+      },
+      {
+        key: 'nao-challenge',
+        icon: <UserOutlined />,
+        title: 'Nao Challenge',
+      },
+      {
+        key: 'cambridge',
+        icon: <UserOutlined />,
+        title: 'Cambridge',
+      },
+    ],
+  },
+  {
+    key: 'studenti',
+    icon: <UserOutlined />,
+    title: 'Studenti',
+    subMenuItems: [
+      {
+        key: 'modulistica-studenti',
+        title: 'Modulistica',
+        icon: <EditOutlined />,
+        subMenuItems: [
+          {
+            key: 'cambio-specializzazione',
+            icon: <InfoCircleOutlined />,
+            title: 'Cambio specializzazione',
+          },
+          {
+            key: 'richiesta-deroga',
+            icon: <InfoCircleOutlined />,
+            title: 'Richiesta deroga',
+          },
+          {
+            key: 'crediti-formativi',
+            icon: <InfoCircleOutlined />,
+            title: 'Domanda Crediti Formativi',
+          },
+          {
+            key: 'certificazione-medica',
+            icon: <InfoCircleOutlined />,
+            title: 'Modello Certificazione Medica e PDP',
+          },
+          {
+            key: 'conferma-iscrizione',
+            icon: <InfoCircleOutlined />,
+            title: 'Conferma Iscrizione',
+          },
+          {
+            key: 'nulla-osta',
+            icon: <InfoCircleOutlined />,
+            title: 'Nulla Osta - Trasferimento',
+          },
+          {
+            key: 'non-iscrizione',
+            icon: <InfoCircleOutlined />,
+            title: 'Non Conferma Iscrizione',
+          },
+          {
+            key: 'esonero-fisica',
+            icon: <InfoCircleOutlined />,
+            title: 'Esonero EdFisica',
+          },
+          {
+            key: 'esonero-lingua-inglese',
+            icon: <InfoCircleOutlined />,
+            title: 'Esonero Lingua Inglese',
+          },
+          {
+            key: 'esonero-informatica',
+            icon: <InfoCircleOutlined />,
+            title: 'Esonero Informatica',
+          },
+        ],
+      },
+      {
+        key: 'orario-lezioni',
+        icon: <InfoCircleOutlined />,
+        title: 'Orario Lezioni',
+      },
+      {
+        key: 'avvisi-studenti',
+        icon: <InfoCircleOutlined />,
+        title: 'Avvisi Studenti',
+      },
+      {
+        key: 'servizi-studenti',
+        title: 'Servizi',
+        icon: <SolutionOutlined />,
+        subMenuItems: [
+          {
+            key: 'fotocopie',
+            icon: <InfoCircleOutlined />,
+            title: 'Fotocopie',
+          },
+          {
+            key: 'mensa',
+            icon: <InfoCircleOutlined />,
+            title: 'Mensa',
+          },
+          {
+            key: 'parcheggio',
+            icon: <InfoCircleOutlined />,
+            title: 'Parcheggio',
+          },
+          {
+            key: 'portale-studenti',
+            icon: <InfoCircleOutlined />,
+            title: 'Portale Studenti',
+          },
+          {
+            key: 'biblioteca',
+            icon: <InfoCircleOutlined />,
+            title: 'Biblioteca',
+          },
+        ],
+      },
+    ],
+  },
+];
+
+
+const Sidebar = ({ collapsed, onCollapse }: CustomMenuProps) => {
+  const renderMenuItem = (item: any) => (
+    <Menu.Item key={item.key} icon={item.icon}>
+      {item.title}
+    </Menu.Item>
+  );
+  
+const renderSubMenu = (item: any) => (
+    <SubMenu key={item.key} icon={item.icon} title={item.title}>
+      {item.subMenuItems.map((subItem: any) =>
+        subItem.subMenuItems ? (
+          <SubMenu key={subItem.key} icon={subItem.icon} title={subItem.title}>
+            {subItem.subMenuItems.map((subSubItem: any) => (
+              <Menu.Item key={subSubItem.key} icon={subSubItem.icon}>
+                {subSubItem.title}
+              </Menu.Item>
+            ))}
+          </SubMenu>
+        ) : (
+          <Menu.Item key={subItem.key} icon={subItem.icon}>
+            {subItem.title}
+          </Menu.Item>
+        ),
+      )}
+    </SubMenu>
+  );
+
 
   return (
-    /*GESTIONE LAYOUT PER TUTTE LE PAGINE*/
-    <Layout>
-
-      {/*HEADER CON LOGO, TITOLO E BARRA DI RICERCA*/}
-
-
-
-      <Navbar></Navbar>
-
-
-
-      <Menu onClick={onClick} style={{ width: 256, height: '100vh', position: 'fixed', left: 0, top: 80, bottom: 0, }} mode="vertical">
-        <Menu.Item key="home" icon={<HomeOutlined />}>
-          Home
-        </Menu.Item>
-        <SubMenu key="organigramma" icon={<SolutionOutlined />} title="Organigramma">
-          <Menu.Item key="sistema" icon={<UserOutlined />}>
-            Figure di Sistema
-          </Menu.Item>
-          <Menu.Item key="pcto" icon={<UserOutlined />}>
-            PCTO
-          </Menu.Item>
-
-          <Menu.Item key="tematiche" icon={<UserOutlined />}>
-            Figure Tematiche
-          </Menu.Item>
-
-          <Menu.Item key="strumentali" icon={<UserOutlined />}>
-            Funzioni Strumentali
-          </Menu.Item>
-
-          <Menu.Item key="presidenza" icon={<UserOutlined />}>
-            Ufficio Presidenza
-          </Menu.Item>
-
-          <Menu.Item key="segreteria" icon={<UserOutlined />}>
-            Uffico Segreteria
-          </Menu.Item>
-        </SubMenu>
-
-        <SubMenu key="circolari" icon={<InfoCircleOutlined />} title="Circolari">
-          <Menu.Item key="circolari-diurno" icon={<UserOutlined />}>
-            Circolari Diurno
-          </Menu.Item>
-
-          <Menu.Item key="circolari-serale" icon={<UserOutlined />}>
-            Circolari Serale
-          </Menu.Item>
-
-          <Menu.Item key="circolari-2020" icon={<UserOutlined />}>
-            Circolari 2020
-          </Menu.Item>
-
-          <Menu.Item key="circolari-2021" icon={<UserOutlined />}>
-            Circolari 2021
-          </Menu.Item>
-
-        </SubMenu>
-        <SubMenu key="offerta-formativa" icon={<BookOutlined />} title="Offerta Formativa">
-          <Menu.Item key="ecdl" icon={<EditOutlined />}>
-            ECDL
-          </Menu.Item>
-          <Menu.Item key="cisco" icon={<BookOutlined />}>
-            Cisco
-          </Menu.Item>
-          <Menu.Item key="erasmus" icon={<UserOutlined />}>
-            Erasmus
-          </Menu.Item>
-          <Menu.Item key="zero-robotics" icon={<UserOutlined />}>
-            Zero Robotics
-          </Menu.Item>
-          <Menu.Item key="nao-challenge" icon={<UserOutlined />}>
-            Nao Challenge
-          </Menu.Item>
-          <Menu.Item key="cambridge" icon={<UserOutlined />}>
-            Cambridge
-          </Menu.Item>
-        </SubMenu>
-
-        <SubMenu key="studenti" icon={<UserOutlined />} title="Studenti">
-          <SubMenu key="modulistica-studenti" title="Modulistica" icon={<EditOutlined />}>
-            <Menu.Item key="cambio-specializzazione" icon={<InfoCircleOutlined />}>
-              Cambio specializzazione
-            </Menu.Item>
-            <Menu.Item key="richiesta-deroga" icon={<InfoCircleOutlined />}>
-              Richiesta deroga
-            </Menu.Item>
-            <Menu.Item key="crediti-formativi" icon={<InfoCircleOutlined />}>
-              Domanda Crediti Formativi
-            </Menu.Item>
-            <Menu.Item key="certificazione-medica" icon={<InfoCircleOutlined />}>
-              Modello Certificazione Medica e PDP
-            </Menu.Item>
-            <Menu.Item key="conferma-iscrizione" icon={<InfoCircleOutlined />}>
-              Conferma Iscrizione
-            </Menu.Item>
-            <Menu.Item key="nulla-osta" icon={<InfoCircleOutlined />}>
-              Nulla Osta - Trasferimento
-            </Menu.Item>
-            <Menu.Item key="non-iscrizione" icon={<InfoCircleOutlined />}>
-              Non Conferma Iscrizione
-            </Menu.Item>
-            <Menu.Item key="esonero-fisica" icon={<InfoCircleOutlined />}>
-              Esonero Ed. Fisica
-            </Menu.Item>
-            <Menu.Item key="assemblea-classe" icon={<InfoCircleOutlined />}>
-              Richiesta Assemblea di Classe
-            </Menu.Item>
-            <Menu.Item key="acquisto-libro" icon={<InfoCircleOutlined />}>
-              Contributo Acquisto Libri
-            </Menu.Item>
-            <Menu.Item key="autorizzazione" icon={<InfoCircleOutlined />}>
-              Autorizzazione Generica
-            </Menu.Item>
-            <Menu.Item key="ingresso-uscita" icon={<InfoCircleOutlined />}>
-              Richiesta Ingresso Posticipato - Uscita Anticipata
-            </Menu.Item>
-            <Menu.Item key="iscrizione-serale" icon={<InfoCircleOutlined />}>
-              Iscrizione Corso Serale
-            </Menu.Item>
-          </SubMenu>
-          <SubMenu key="libri" icon={<UserOutlined />} title="Libri di Testo">
-            <Menu.Item key="libri-tecnologico" icon={<InfoCircleOutlined />}>
-              Tecnologico
-            </Menu.Item>
-            <Menu.Item key="libri-professionale" icon={<InfoCircleOutlined />}>
-              Professionale
-            </Menu.Item>
-            <Menu.Item key="libri-serale" icon={<InfoCircleOutlined />}>
-              Serale
-            </Menu.Item>
-          </SubMenu>
-          <Menu.Item key="psicologia" icon={<InfoCircleOutlined />}>
-            Sportello di Psicologia
-          </Menu.Item>
-          <Menu.Item key="registro-studente" icon={<InfoCircleOutlined />}>
-            Registro Elettronico
-          </Menu.Item>
-
-          <Menu.Item key="giochiamo" icon={<InfoCircleOutlined />}>
-            Giochiamo Insieme
-          </Menu.Item>
-        </SubMenu>
-
-        <SubMenu key="docenti" icon={<UserOutlined />} title="Docenti">
-          <SubMenu key="modulistica" title="Modulistica" icon={<EditOutlined />}>
-            <Menu.Item key="scrutini" icon={<InfoCircleOutlined />}>
-              Vademecum Scrutini Fine Anno
-            </Menu.Item>
-            <Menu.Item key="modulistica-docenti" icon={<InfoCircleOutlined />}>
-              Modulistica Docenti
-            </Menu.Item>
-            <Menu.Item key="percorsi-trasversali" icon={<InfoCircleOutlined />}>
-              Percorsi per le Competenze Trasversali
-            </Menu.Item>
-            <Menu.Item key="15-maggio" icon={<InfoCircleOutlined />}>
-              Vademecum Documentazione 15 Maggio
-            </Menu.Item>
-            <Menu.Item key="libri-testo" icon={<InfoCircleOutlined />}>
-              Vademecum Libri di Testo
-            </Menu.Item>
-          </SubMenu>
-
-          <SubMenu key="dsa" title="DSA" icon={<EditOutlined />}>
-            <Menu.Item key="linea-guida" icon={<InfoCircleOutlined />}>
-              Linee Guida sui DSA
-            </Menu.Item>
-            <Menu.Item key="piano-didattico" icon={<InfoCircleOutlined />}>
-              Piano Didattico Personalizzato
-            </Menu.Item>
-          </SubMenu>
-
-
-          <SubMenu key="bes" title="BES" icon={<EditOutlined />}>
-            <Menu.Item key="certificato-crediti-formativi" icon={<InfoCircleOutlined />}>
-              Certificato Crediti Formativi
-            </Menu.Item>
-            <Menu.Item key="pei-diff" icon={<InfoCircleOutlined />}>
-              PEI Differenziato
-            </Menu.Item>
-            <Menu.Item key="certificazione-medica-pdp" icon={<InfoCircleOutlined />}>
-              Modello Consegna Certificazione Medica e Richiesta PDP
-            </Menu.Item>
-            <Menu.Item key="pdp" icon={<InfoCircleOutlined />}>
-              Modello PDP Alunni di Cittadinanza italiana BES
-            </Menu.Item>
-            <Menu.Item key="pei-minimi" icon={<InfoCircleOutlined />}>
-              PEI Obiettivi Minimi
-            </Menu.Item>
-            <Menu.Item key="inclusione" icon={<InfoCircleOutlined />}>
-              Piano Annuale per L'Inclusività
-            </Menu.Item>
-
-            <Menu.Item key="profilo-dinamico" icon={<InfoCircleOutlined />}>
-              Profilo Dinamico Funzionale
-            </Menu.Item>
-          </SubMenu>
-          <SubMenu key="programmazione-didattica" title="Programmazione Didattica" icon={<EditOutlined />}>
-            <Menu.Item key="programmazione-differenziale" icon={<InfoCircleOutlined />}>
-              Obiettivi Differenziali
-            </Menu.Item>
-            <Menu.Item key="programmazione-minimi" icon={<InfoCircleOutlined />}>
-              Obiettivi Minimi
-            </Menu.Item>
-          </SubMenu>
-
-
-          <Menu.Item key="registro-docente" icon={<InfoCircleOutlined />}>
-            Registro Elettronico
-          </Menu.Item>
-          <Menu.Item key="dispersione-scolastica" icon={<InfoCircleOutlined />}>
-            Dispersione Scolastica
-          </Menu.Item>
-
-          <Menu.Item key="piano-attività" icon={<InfoCircleOutlined />}>
-            Piano Attività
-          </Menu.Item>
-
-          <Menu.Item key="dipartimenti" icon={<InfoCircleOutlined />}>
-            Dipartimenti
-          </Menu.Item>
-
-          <Menu.Item key="formazione-docenti" icon={<InfoCircleOutlined />}>
-            Formazione Docenti
-          </Menu.Item>
-
-          <Menu.Item key="regolamento-istituto" icon={<InfoCircleOutlined />}>
-            Regolamento Istituto
-          </Menu.Item>
-
-          <Menu.Item key="patto-educativo" icon={<InfoCircleOutlined />}>
-            Patto Educativo
-          </Menu.Item>
-        </SubMenu>
+    <Layout.Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+      <div className="logo" />
+      <Menu className="Sidebar" theme="light" mode="vertical" defaultSelectedKeys={['home']} style = {{width: 256, height: '100vh', position: 'fixed', left: 0, top: 80, bottom: 0}}>
+        {menuItems.map((item) =>
+          item.subMenuItems ? renderSubMenu(item) : renderMenuItem(item),
+        )}
       </Menu>
+      <Navbar />
+    </Layout.Sider>
+  );
+};
 
-
-
-    </Layout>
-  )
-}
-
-export default App;
+export default Sidebar;
