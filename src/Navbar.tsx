@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { BookOutlined, EditOutlined, HomeOutlined, InfoCircleOutlined, SolutionOutlined, UserOutlined } from '@ant-design/icons';
+import { Menu } from 'antd';
 import './style.scss';
 import logo from './assets/logo-VT.png';
-import { MenuItem, menuItems } from './App';
+import { MenuItem, menuItems } from './Sidebar';
+import { MenuOutlined } from '@ant-design/icons';
+
+const { SubMenu } = Menu;
 
 type NavbarProps = {};
 
@@ -24,23 +29,16 @@ const Navbar: React.FC<NavbarProps> = () => {
   const renderMenuItem = (item: MenuItem) => {
     if (item.subMenuItems) {
       return (
-        <li key={item.key} className="menu-item">
-          <a className="menu-link" href="#" onClick={closeMenu}>
-            {item.title}
-          </a>
-          <ul className="submenu-inner">
-            {item.subMenuItems.map((childItem) => renderMenuItem(childItem))}
-          </ul>
-        </li>
+        <SubMenu key={item.key} title={item.title} icon={item.icon}>
+          {item.subMenuItems.map((childItem) => renderMenuItem(childItem))}
+        </SubMenu>
       );
     }
 
     return (
-      <li key={item.key} className="menu-item">
-        <a className="menu-link" href={item.link} onClick={closeMenu}>
-          {item.title}
-        </a>
-      </li>
+      <Menu.Item key={item.key} onClick={closeMenu} icon={item.icon}>
+        <a href={item.link}>{item.title}</a>
+      </Menu.Item>
     );
   };
 
@@ -51,22 +49,22 @@ const Navbar: React.FC<NavbarProps> = () => {
           <a href="./index.html">
             <img src={logo} alt="Logo" className="logo" />
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span className="brand-name">I.I.S. SUPERIORE</span>
-              <span className="brand-name" style={{ fontWeight: 'bolder' }}>
+              <span className="brand-name" style={{margin:"-2px"}}>I.I.S. SUPERIORE</span>
+              <span className="brand-name" style={{margin:"-2px", fontWeight: 'bolder' }}>
                 VERONA-TRENTO
               </span>
-              <span className="brand-name">MESSINA</span>
+              <span className="brand-name" style={{margin:"-2px"}}>MESSINA</span>
             </div>
           </a>
         </div>
         <div className={`burger ${isMenuActive ? 'is-active' : ''}`} id="burger" onClick={toggleMenu}>
-          <span className="burger-line"></span>
-          <span className="burger-line"></span>
-          <span className="burger-line"></span>
+          <MenuOutlined />
         </div>
         <div className={`overlay ${isMenuActive ? 'is-active' : ''}`} onClick={closeMenu}></div>
         <div className={`menu ${isMenuActive ? 'is-active' : ''}`} id="menu">
-          <ul className="menu-inner">{menuItems.map((item) => renderMenuItem(item))}</ul>
+          <Menu mode="inline" defaultSelectedKeys={['home']}>
+            {menuItems.map((item) => renderMenuItem(item))}
+          </Menu>
         </div>
         <span>
           <i className="bx bx-search search-toggle" onClick={toggleSearch}></i>

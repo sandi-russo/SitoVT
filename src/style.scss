@@ -98,6 +98,22 @@ img {
         column-gap: 1rem;
         display: flex;
         align-items: center;
+        color: #1d3563;
+        
+
+        :visited{
+            color: #3f6bbd;
+        }
+
+        
+        :hover{
+            color: #3f6bbd;
+            transition: color 1s;
+        }
+
+        :active{
+            color: #1d3563;
+        }
     }
 }
 
@@ -289,9 +305,12 @@ img {
     }
 }
 
-
 @media only screen and (max-width: 48rem) {
     .Sidebar {
       display: none;
+    }
+
+    .brand-name{
+        font-size: 80%;
     }
   }
