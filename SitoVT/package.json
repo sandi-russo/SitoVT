@@ -17,6 +17,7 @@
     "react-dom": "^18.2.0",
     "react-image": "^4.1.0",
     "react-router": "^6.14.1",
+    "react-router-dom": "^6.14.1",
     "sass": "^1.63.6"
   },
   "devDependencies": {
