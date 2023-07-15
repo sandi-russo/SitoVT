@@ -1,51 +1,37 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import Navbar from './Navbar';
-import Sidebar, {menuItems, MenuItem} from './Sidebar';
+import Sidebar from './Sidebar';
 import './style.scss';
 import { Layout } from 'antd';
-import { RouteProps } from 'react-router-dom';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+const getPageComponent = (pathname) => {
+  const pageName = pathname.slice(1).toLowerCase();
+  const pageComponentName = `${pageName.charAt(0).toUpperCase()}${pageName.slice(1)}`;
 
-const pages = import.meta.glob("./pages/**/*.tsx", { eager: true });
-
-const routes = [{path: '404.tsx', component: 'error'}];
-for (const path of Object.keys(pages)) {
-  const fileName = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1];
-  if (!fileName) {
-    continue;
+  try {
+    return lazy(() => import(`./pages/${pageName}`));
+  } catch (error) {
+    console.error(`Unable to load component for page '${pageName}':`, error);
+    return null;
   }
-
-    routes.push({
-    path: path,
-    component: fileName    
-  });
-  console.log(fileName);
-
-}
+};
 
 const App: React.FC = () => {
+  const { pathname } = window.location;
+  const PageComponent = getPageComponent(pathname);
 
   return (
     <div className="App">
       <Navbar />
       <Sidebar />
       <Layout className="sitelayout">
-        <h1>ciao, lo sai che ho creato un sito appositamente per te!</h1>
-        <Router>
-          <Routes>
-            {routes.map((router, index) => (
-          <Route
-            key={router.path}
-            path={router.path}
-            element={<router.component />}
-          />
-          ))}
-          </Routes>
-        </Router>
+        <Suspense>
+          {PageComponent ? <PageComponent /> : <div>404 - Page not found</div>}
+        </Suspense>
       </Layout>
     </div>
   );
+
 };
 
 export default App;

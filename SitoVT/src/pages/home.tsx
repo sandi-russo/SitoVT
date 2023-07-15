@@ -1,7 +1,6 @@
-import React from 'react';
 
 function home() {
-    return <h1>Home Page</h1>;
+    return <h1>Benvenuti nell'homepage</h1>;
 }
 
 export default home;
