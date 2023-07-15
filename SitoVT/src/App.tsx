@@ -4,15 +4,23 @@ import Sidebar from './Sidebar';
 import './style.scss';
 import { Layout } from 'antd';
 
-const getPageComponent = (pathname) => {
+const getPageComponent = (pathname: string) => {
   const pageName = pathname.slice(1).toLowerCase();
-  const pageComponentName = `${pageName.charAt(0).toUpperCase()}${pageName.slice(1)}`;
 
-  try {
-    return lazy(() => import(`./pages/${pageName}`));
-  } catch (error) {
-    console.error(`Unable to load component for page '${pageName}':`, error);
-    return null;
+  if (pageName === '') {
+    // se l'pathname è vuoto, impostiamo la home come pagina predefinita
+    return lazy(() => import('./pages/home').then((module: any) => ({ default: module.default })));
+  }
+
+  // recupera dinamicamente tutti i file presenti nella cartella "pages" e nelle sue sottocartelle
+  const pages = import.meta.glob('./pages/**/*.tsx');
+  const pagePath = `./pages/${pageName}.tsx`;
+
+  if (pages[pagePath]) {
+    return lazy(() => pages[pagePath]().then((module: any) => ({ default: module.default })));
+  } else {
+    console.error(`Unable to load component for page '${pageName}'`);
+    return lazy(() => import(`./pages/not-found`).then((module: any) => ({ default: module.default })));
   }
 };
 
@@ -25,13 +33,12 @@ const App: React.FC = () => {
       <Navbar />
       <Sidebar />
       <Layout className="sitelayout">
-        <Suspense>
-          {PageComponent ? <PageComponent /> : <div>404 - Page not found</div>}
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <PageComponent />
         </Suspense>
       </Layout>
     </div>
   );
-
 };
 
 export default App;
