@@ -4,6 +4,9 @@
 
 L'obiettivo è quello di sostituire il vecchio sito con questo nuovo aggiornato con tecnologie più recenti ed un aspetto più fresco e moderno.
 
+![old-veronatrento](https://github.com/sandi-russo/SitoVT/assets/62933268/0589e684-6b19-47c3-8be9-1f31d4f833a3)
+
+
 ## Live Demo
 *
 
