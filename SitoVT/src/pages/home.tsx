@@ -1,6 +1,9 @@
+import React from 'react';
 
-function home() {
-    return <h1>Benvenuti nell'homepage!</h1>;
-}
+const home: React.FC = () => {
+    return(
+    <h1>ciao, Homepage!</h1>
+);
+    };
 
 export default home;

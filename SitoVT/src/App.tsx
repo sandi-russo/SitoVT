@@ -1,8 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
+import Immagine1 from './assets/veronatrento-1.jpg';
 import './style.scss';
-import { Layout } from 'antd';
+import { Layout, Carousel } from 'antd';
 
 const getPageComponent = (pathname: string) => {
   const pageName = pathname.slice(1).toLowerCase();
@@ -33,7 +34,21 @@ const App: React.FC = () => {
       <Navbar />
       <Sidebar />
       <Layout className="sitelayout">
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Carousel autoplay style={{width: 500}}>
+          <div>
+            <img src={Immagine1} alt="immagine" />
+          </div>
+          <div>
+            <img src={Immagine1} alt="immagine" />
+          </div>
+          <div>
+            <img src={Immagine1} alt="immagine" />
+          </div>
+          <div>
+            <img src={Immagine1} alt="immagine" />
+          </div>
+        </Carousel>
+        <Suspense>
           <PageComponent />
         </Suspense>
       </Layout>
