@@ -306,21 +306,23 @@ export const menuItems: MenuItem[] = [
 ];
 
 
-const renderMenuItems = (menuItems: MenuItem[]): JSX.Element[] => {
+const renderMenuItems = (menuItems: MenuItem[], isFirstHome = true): JSX.Element[] => {
   return menuItems.map((item: MenuItem) => {
     if (item.subMenuItems) {
+      const subMenuContent = renderMenuItems(item.subMenuItems, isFirstHome);
+
       return (
         <SubMenu key={item.key} icon={item.icon} title={item.title}>
-          {renderMenuItems(item.subMenuItems)}
+          {subMenuContent}
         </SubMenu>
       );
     } else {
+      const customStyle = isFirstHome && item.title === 'Home' ? { marginTop: '90px' } : {};
+
       return (
-        <Menu.Item key={item.key} icon={item.icon}>
+        <Menu.Item key={item.key} icon={item.icon} style={customStyle}>
           {item.link ? (
-            <NavLink to={item.link}>
-              {item.title}
-            </NavLink>
+            <NavLink to={item.link}>{item.title}</NavLink>
           ) : (
             <span>{item.title}</span>
           )}
@@ -330,10 +332,11 @@ const renderMenuItems = (menuItems: MenuItem[]): JSX.Element[] => {
   });
 };
 
+
 const Sidebar = () => {
   return (
     <Router>
-      <Menu className="Sidebar" theme="light" mode="vertical" defaultSelectedKeys={['home']} style={{ width: 256, height: '100vh', position: 'fixed', left: 0, top: 80, bottom: 0 }}>
+      <Menu className="Sidebar" theme="light" mode="vertical" defaultSelectedKeys={['home']} style={{ width: 256, height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0 }}>
         {renderMenuItems(menuItems)}
       </Menu>
     </Router>

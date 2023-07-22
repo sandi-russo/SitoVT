@@ -333,10 +333,6 @@ img {
     .Sidebar.is-active {
         transform: translateX(0);
     }
-}
-
-
-@media only screen and (max-width: 48rem) {
 
     .brand-name {
         font-size: 80%;
@@ -346,5 +342,5 @@ img {
         background: none;
         margin: 100px 10px 10px 10px;
     }
-}
 
+}
