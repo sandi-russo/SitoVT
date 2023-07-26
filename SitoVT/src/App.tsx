@@ -10,7 +10,6 @@ const getPageComponent = (pathname: string) => {
   const pageName = pathname.slice(1).toLowerCase();
 
   if (pageName === '') {
-    // se l'pathname è vuoto, impostiamo la home come pagina predefinita
     return lazy(() => import('./pages/home').then((module: any) => ({ default: module.default })));
   }
 
@@ -36,11 +35,11 @@ const App: React.FC = () => {
         <Navbar />
       </Header>
       <Layout>
-        <Sider className='sider-container' width={256}>
+        <Sider className="sider-container" width={256} style={{backgroundColor: 'white'}}>
           <Sidebar />
         </Sider>
 
-        <Content style={{ padding: 24, margin: 0, minHeight: 280, background: 'white' }}>
+        <Content style={{ padding: 24, margin: 0, minHeight: 280, backgroundColor: 'white'}} className='content'>
 
           <Suspense>
             <PageComponent />

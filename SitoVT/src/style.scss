@@ -319,13 +319,17 @@ img {
 .Sidebar {
     transform: translateX(-100%);
     transition: transform 0.5s ease-in-out;
+    z-index: 2;
 }
 
 .Sidebar.is-active {
-    transform: translateX(0);
+    transform: translateX(0%);
 }
 
-@media only screen and (min-width: 48rem) {
+
+
+
+@media only screen and (min-width: 766px) {
     .Sidebar {
         transform: translateX(0%);
     }
@@ -343,4 +347,13 @@ img {
         margin: 100px 10px 10px 10px;
     }
 
+}
+
+@media only screen and (max-width: 767px) {
+    .content{
+        z-index: 1;
+        width: auto !important;
+        position: absolute;
+        background-color: white !important;
+    }
 }
