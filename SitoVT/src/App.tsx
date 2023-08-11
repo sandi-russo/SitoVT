@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 import './style.scss';
 import { Layout } from 'antd';
 
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 const getPageComponent = (pathname: string) => {
   const pageName = pathname.slice(1).toLowerCase();
@@ -31,15 +31,11 @@ const App: React.FC = () => {
 
   return (
     <Layout>
-      <Header>
         <Navbar />
-      </Header>
       <Layout>
-        <Sider className="sider-container" width={256} style={{backgroundColor: 'white'}}>
           <Sidebar />
-        </Sider>
 
-        <Content style={{ padding: 24, margin: 0, minHeight: 280, backgroundColor: 'white'}} className='content'>
+        <Content style={{ padding: 24, margin: 0, minHeight: 280, backgroundColor: 'white', marginTop: "5rem", width: "100%"}} className='content'>
 
           <Suspense>
             <PageComponent />
