@@ -46,7 +46,7 @@ const Navbar: React.FC<NavbarProps> = () => {
     <header className="header" id="header">
       <nav className="navbar container">
         <div className="brand" style={{ lineHeight: '1.1' }}>
-          <a href="./index.html" style={{ display: 'flex', alignItems: 'center' }}>
+          <a href="" style={{ display: 'flex', alignItems: 'center' }}>
             <Img src={logo} alt="Logo" className="logo" loader={<div className="logo-placeholder" style={{ width: '50px', height: '50px', marginRight: '10px' }} />} />
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span className="brand-name" style={{ margin: 0, fontSize: '13px' }}>I.I.S. SUPERIORE</span>

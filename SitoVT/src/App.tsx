@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 import './style.scss';
 import { Layout } from 'antd';
 
-const { Content, Sider } = Layout;
+const { Content } = Layout;
 
 const getPageComponent = (pathname: string) => {
   const pageName = pathname.slice(1).toLowerCase();

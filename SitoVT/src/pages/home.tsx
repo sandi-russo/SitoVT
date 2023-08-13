@@ -9,16 +9,16 @@ const home: React.FC = () => {
     return(
         <Carousel style={{ maxWidth: "1000px", margin: "0 auto"}} autoplay>
         <div>
-          <img src={img1} alt="sborra" />
+        <img src={img1} alt="img1" />
         </div>
         <div>
-        <img src={img1} alt="sborra" />
+        <img src={img1} alt="img2" />
         </div>
         <div>
-        <img src={img1} alt="sborra" />
+        <img src={img1} alt="img3" />
         </div>
         <div>
-        <img src={img1} alt="sborra" />
+        <img src={img1} alt="img4" />
         </div>
       </Carousel>
 );
